@@ -46,7 +46,7 @@ button{
 #stream-controls{
   display: none;
   justify-content: center;
-  margin-top:0.5em;
+  /*margin-top:0.5em;*/
 }
 
 @media screen and (max-width:1400px){
