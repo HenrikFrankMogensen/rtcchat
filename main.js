@@ -1,8 +1,8 @@
 // Definerer App ID, token og kanalnavn for AgoraRTC
 const APP_ID = 'd17d1751992d4c3aabba706be6a156c5'
-const TOKEN = '007eJxTYPhgMF/u2Fp1X9GqiXc5t4QIcfidnreL02xp0WXmrFpx7SoFhhRDcyAyNbS0NEoxSTZOTExKSjQ3MEtKNUs0NDVLNmV4bpnWEMjIEO9uwMjIAIEgPitDbmJmnhkDAwCUDBw4'
+const TOKEN = '007eJxTYPgb8neVRvz7k3t3C6y+++dcR9vJLymTtBakplhcXrtNyPunAkOKoTkQmRpaWhqlmCQbJyYmJSWaG5glpZolGpqaJZsGylinNQQyMmw985mFkQECQXxWhtzEzDwzBgYApLojXg=='
 const CHANNEL = "main6"
-
+// APP name MyStream
 // Opretter en klient med RTC-tilstand og VP8 kodek
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
@@ -20,6 +20,7 @@ let joinAndDisplayLocalStream = async () => {
     client.on('user-left', handleUserLeft)
     
     // Deltager i kanalen og får tildelt en UID
+    // UID med stort er lokal id, medens user.id er fjern id. Se i funktionen handleUserJoined().
     let UID = await client.join(APP_ID, CHANNEL, TOKEN, null)
 
     // Opretter mikrofon- og kameraspår
@@ -46,6 +47,7 @@ let joinStream = async () => {
 }
 
 // Funktion for at håndtere når en bruger deltager i strømmen
+// user og mediaType er genereret i filen AgoraRTC_N-4.7.3.js og er 
 let handleUserJoined = async (user, mediaType) => {
     // Gemmer den fjernbruger
     remoteUsers[user.uid] = user 
